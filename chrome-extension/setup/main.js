@@ -65,7 +65,10 @@ import notificationUtil from '../notification-util.js';
 		const message = {
 			filePath,
 		};
-		chrome.runtime.sendNativeMessage(common.applicationName, message, response => {
+		chrome.runtime.sendMessage({
+			method: 'sendNativeMessage',
+			payload: message,
+		}, response => {
 			console.info(response);
 
 			notificationUtil.showNotification(response);
